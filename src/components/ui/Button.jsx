@@ -1,7 +1,6 @@
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
-
+import PropTypes from "prop-types";
 import { cn } from "@/lib/utils";
 
 /**
@@ -59,5 +58,26 @@ function Button({ className, variant, size, asChild = false, ...props }) {
     />
   );
 }
+
+/**
+ * Definición de las propTypes para el componente Button, asegurando que se reciban las propiedades correctas y proporcionando documentación clara sobre los tipos esperados.
+ * - `variant`: Opcional, debe ser una cadena que indique la variante del botón ("default", "destructive", "outline", "secondary", "ghost", "link"). Por defecto es "default".
+ * - `size`: Opcional, debe ser una cadena que indique el tamaño del botón ("default", "sm", "lg", "icon", "icon-sm", "icon-lg"). Por defecto es "default".
+ * - `asChild`: Opcional, debe ser un booleano que indique si el botón se renderiza como un Slot para permitir personalización. Por defecto es false.
+ * - `className`: Opcional, debe ser una cadena de texto que contenga clases CSS adicionales para personalizar el estilo del botón. Si no se proporciona, se aplicarán estilos por defecto.
+ */
+Button.propTypes = {
+  variant: PropTypes.oneOf([
+    "default",
+    "destructive",
+    "outline",
+    "secondary",
+    "ghost",
+    "link",
+  ]),
+  size: PropTypes.oneOf(["default", "sm", "lg", "icon", "icon-sm", "icon-lg"]),
+  asChild: PropTypes.bool,
+  className: PropTypes.string,
+};
 
 export { Button };
