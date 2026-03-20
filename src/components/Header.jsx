@@ -20,16 +20,16 @@ export function Header() {
   }, []);
 
   const navItems = [
-    { label: "About", href: "#about" },
-    { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "Sobre Mí", href: "#about" },
+    { label: "Experiencia", href: "#experience" },
+    { label: "Proyectos", href: "#projects" },
+    { label: "Contacto", href: "#contact" },
   ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMenuOpen
           ? "bg-background/80 backdrop-blur-lg border-b border-border"
           : "bg-transparent"
       }`}
@@ -71,14 +71,14 @@ export function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-border pt-4">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden mt-3 -mx-6 border-t border-border bg-background/95 backdrop-blur-lg">
+            <div className="flex flex-col py-3 px-6 gap-2">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {item.label}
                 </a>

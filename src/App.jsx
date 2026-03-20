@@ -1,14 +1,15 @@
 import { ParticlesBackground } from "./components/ParticlesBackground";
 import { Header } from "./components/Header";
+import { Home } from "./components/Home";
 
 export default function App() {
   return (
     <>
       <ParticlesBackground />
       <Header />
-      <div className="flex h-screen items-center justify-center">
-        <h1 className="text-4xl font-bold text-gray-800">Hello, World!</h1>
-      </div>
+      <main>
+        <Home />
+      </main>
     </>
   );
 }
