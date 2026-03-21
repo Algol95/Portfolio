@@ -1,0 +1,24 @@
+[
+  { "name": "Java", "icon": "FaJava", "level": 85 },
+  { "name": "Spring", "icon": "SiSpring", "level": 80 },
+  { "name": "React", "icon": "SiReact", "level": 75 },
+  { "name": "Tailwind CSS", "icon": "SiTailwindcss", "level": 75 },
+  { "name": "Python", "icon": "SiPython", "level": 70 },
+  { "name": "Django", "icon": "SiDjango", "level": 65 },
+  { "name": "MySql", "icon": "SiMysql", "level": 80 },
+  { "name": "PostgreSQL", "icon": "SiPostgresql", "level": 75 },
+  { "name": "Git", "icon": "SiGit", "level": 70 },
+
+  { "name": "HTML5", "icon": "SiHtml5" },
+  { "name": "CSS3", "icon": "SiCss" },
+  { "name": "JavaScript", "icon": "SiJavascript" },
+  { "name": "Sass", "icon": "SiSass" },
+  { "name": "GitHub", "icon": "SiGithub" },
+  { "name": "Salesforce", "icon": "SiSalesforce" },
+  { "name": "Postman", "icon": "SiPostman" },
+  { "name": "VS Code", "icon": null },
+  { "name": "PHP", "icon": "SiPhp" },
+  { "name": "Jira", "icon": "SiJira" },
+  { "name": "Eclipse", "icon": "SiEclipseide" },
+  { "name": "NetBeans", "icon": "SiApachenetbeanside" }
+]

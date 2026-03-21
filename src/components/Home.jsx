@@ -64,10 +64,10 @@ export function Home() {
               </div>
 
               <p className="text-lg text-muted-foreground leading-relaxed max-w-lg text-pretty">
-                Soy un desarrollador full stack con ganas de aprender y seguir
-                creciendo. Puedo pasarme horas programando pues es algo que me
-                apasiona y me encanta. No me dan miedo los retos, al contrario,
-                me motivan a seguir mejorando y aprendiendo.
+                Desarrollador Full Stack con experiencia en API REST. Domino
+                tecnologías como Java, SpringBoot, JavaScript, React, Tailwind y
+                BBDD MySQL. Apasionado por crear aplicaciones web eficientes y
+                escalables que resuelvan problemas reales.
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
