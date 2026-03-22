@@ -1,0 +1,35 @@
+[
+  {
+    "period": "feb. 2026 — Presente",
+    "title": "Desarrollador Full Stack ",
+    "company": "Freelance",
+    "url": "#",
+    "description": "Desarrollo y mantenimiento de aplicaciones web por cuenta propia para pequeños negocios:<ul><li>Desarrollo de Front con Vite + React.js y Tailwind CSS</li><li>Desarrollo de Back y lógica de negocio con Java y Spring</li><li>Desarrolle e implemente una API REST de automatización de emails, con seguridad antibots reCaptcha v3 de Google. Lista para replicar en otros proyectos de forma de forma rápida y sencilla, reduciendo el tiempo de desarrollo.</li><li>Gestión de BBDD MySQL</li></ul>",
+    "technologies": [
+      "Java",
+      "Spring",
+      "React",
+      "JavaScript",
+      "Tailwind CSS",
+      "API Rest",
+      "MySQL",
+      "Google reCaptcha v3"
+    ]
+  },
+  {
+    "period": "jul. 2023 — jul. 2024",
+    "title": "Desarrollador Full Stack Junior",
+    "company": "Contein XXI",
+    "url": "https://contein-xxi.net",
+    "description": "<ul><li>Desarrollo de software y microservicios mediante Genexus.</li><li>Mantenimiento, debug y actualización de software mediante Genexus y JavaScript.</li><li>Gestión de base de datos MySQL</li></ul>",
+    "technologies": ["Genexus", "JavaScript", "MySQL"]
+  },
+  {
+    "period": "abr. 2023 — jun. 2023",
+    "title": "Formación en Centro de Trabajo",
+    "company": "Seresco",
+    "url": "https://seresco.es/",
+    "description": "<ul><li>Formación de Java y Spring.</li><li>Formación autodidacta GeneXus 18</li><li>Desarrollo y optimicé <b>proyectos reales</b> de clientes con GeneXus</li></ul>",
+    "technologies": ["Java", "Spring", "GeneXus", "API Rest"]
+  }
+]
