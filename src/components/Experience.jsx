@@ -63,7 +63,7 @@ export function Experience() {
 
         <ScrollReveal direction="up" delay={200} duration={800}>
           <div className="mt-12 text-center">
-            <Button variant="link" size="lg" asChild>
+            <Button variant="default" size="lg" asChild>
               <a
                 href="docs/CV_Developer_ÁngelAragón.pdf"
                 target="_blank"
