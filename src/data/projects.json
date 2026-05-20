@@ -5,6 +5,14 @@
       "title": "E-Commerce Platform",
       "description": "A full-stack e-commerce solution with real-time inventory management, secure payment processing, and an intuitive admin dashboard.",
       "image": null,
+      "images": ["prueba1.png", "prueba2.jpg"],
+      "status": "Caso de estudio",
+      "detailedDescription": "Una plataforma de comercio electrónico pensada para gestionar el ciclo completo de compra, desde el catálogo hasta el panel de administración. El foco del proyecto está en mantener una experiencia de compra fluida sin perder control operativo sobre stock, pagos y pedidos.",
+      "highlights": [
+        "Catálogo con filtros, búsqueda y fichas de producto enriquecidas.",
+        "Panel de administración para inventario, pedidos y estados de compra.",
+        "Integración con pagos seguros y notificaciones del proceso de checkout."
+      ],
       "technologies": ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
       "github": "#",
       "live": "#",
@@ -14,6 +22,14 @@
       "title": "AI Task Manager",
       "description": "Smart task management app that uses AI to prioritize tasks, suggest deadlines, and improve productivity through intelligent automation.",
       "image": null,
+      "images": [],
+      "status": "Demo conceptual",
+      "detailedDescription": "Una aplicación de productividad orientada a priorizar trabajo de forma automática. El objetivo es reducir la fricción en la organización diaria combinando una interfaz rápida con sugerencias generadas a partir del contexto de cada tarea.",
+      "highlights": [
+        "Priorización automática en función de urgencia, contexto e histórico.",
+        "Sugerencias de deadlines y bloques de trabajo asistidos por IA.",
+        "Dashboard con métricas de productividad y seguimiento de carga."
+      ],
       "technologies": ["React", "OpenAI API", "Firebase", "Tailwind"],
       "github": "#",
       "live": "#",
@@ -23,6 +39,14 @@
       "title": "Real-Time Dashboard",
       "description": "Interactive analytics dashboard featuring live data visualization, customizable widgets, and automated reporting capabilities.",
       "image": null,
+      "images": [],
+      "status": "Producción",
+      "detailedDescription": "Un dashboard de analítica en tiempo real diseñado para visualizar eventos y métricas críticas sin sacrificar rendimiento. La interfaz está pensada para operar con datos vivos, filtros combinables y módulos personalizables por usuario.",
+      "highlights": [
+        "Visualizaciones dinámicas conectadas por WebSocket.",
+        "Widgets configurables y diseño adaptable a distintos roles.",
+        "Automatización de reportes y exportación de indicadores clave."
+      ],
       "technologies": ["React", "D3.js", "WebSocket", "Express"],
       "github": "#",
       "live": "#",
@@ -31,6 +55,14 @@
     {
       "title": "Weather App",
       "description": "A beautiful weather application with location-based forecasts and interactive maps.",
+      "images": [],
+      "status": "Side project",
+      "detailedDescription": "Aplicación meteorológica orientada a consulta rápida, con previsión por ubicación y foco en una experiencia visual clara tanto en escritorio como en móvil.",
+      "highlights": [
+        "Búsqueda por ubicación con previsión actual y semanal.",
+        "Mapas interactivos y estados visuales según condiciones climáticas.",
+        "Interfaz optimizada para consulta rápida en móvil."
+      ],
       "technologies": ["React", "Weather API"],
       "github": "#",
       "live": "#",
@@ -39,6 +71,14 @@
     {
       "title": "Markdown Editor",
       "description": "Real-time markdown editor with live preview and syntax highlighting.",
+      "images": [],
+      "status": "Herramienta",
+      "detailedDescription": "Editor enfocado a escritura técnica y documentación, con previsualización instantánea y una interfaz ligera para mantener el flujo de trabajo sin distracciones.",
+      "highlights": [
+        "Edición y preview en paralelo con renderizado inmediato.",
+        "Soporte de resaltado de sintaxis y estructura de documentos.",
+        "Base pensada para exportación o integración en CMS internos."
+      ],
       "technologies": ["Vue.js", "Marked.js"],
       "github": "#",
       "live": "#",
@@ -47,6 +87,14 @@
     {
       "title": "Portfolio Template",
       "description": "A customizable portfolio template for developers and designers.",
+      "images": [],
+      "status": "Template",
+      "detailedDescription": "Template de portfolio modular y fácilmente adaptable a distintos perfiles. Está pensado para personalizar contenido, estilos y secciones sin tocar la estructura principal del proyecto.",
+      "highlights": [
+        "Secciones configurables y datos externos desacoplados del render.",
+        "Diseño responsive con identidad visual moderna.",
+        "Base preparada para ampliarse con blog, demos o CMS."
+      ],
       "technologies": ["Next.js", "Tailwind"],
       "github": "#",
       "live": "#",
@@ -55,6 +103,14 @@
     {
       "title": "Chat Application",
       "description": "Real-time chat app with rooms, direct messaging, and file sharing.",
+      "images": [],
+      "status": "Realtime",
+      "detailedDescription": "Aplicación de mensajería en tiempo real con foco en interacción fluida entre usuarios, gestión de salas y base para colaboración entre equipos pequeños.",
+      "highlights": [
+        "Salas temáticas, mensajes directos y presencia de usuarios.",
+        "Arquitectura orientada a eventos para mensajes en tiempo real.",
+        "Capacidad de adjuntar archivos y ampliar moderación más adelante."
+      ],
       "technologies": ["Socket.io", "React"],
       "github": "#",
       "live": "#",
@@ -63,6 +119,14 @@
     {
       "title": "Recipe Finder",
       "description": "Search and discover recipes based on ingredients you have.",
+      "images": [],
+      "status": "Utilidad",
+      "detailedDescription": "Proyecto orientado a resolver una necesidad cotidiana: descubrir recetas útiles a partir de ingredientes disponibles. La experiencia está planteada para ser directa y visual.",
+      "highlights": [
+        "Búsqueda por ingredientes existentes en casa.",
+        "Resultados con pasos, tiempos y combinaciones sugeridas.",
+        "Interfaz centrada en simplicidad y rapidez de uso."
+      ],
       "technologies": ["React", "Spoonacular API"],
       "github": "#",
       "live": "#",
@@ -71,6 +135,14 @@
     {
       "title": "Crypto Tracker",
       "description": "Track cryptocurrency prices and portfolio performance in real-time.",
+      "images": [],
+      "status": "Fintech",
+      "detailedDescription": "Monitor de mercado cripto orientado a seguimiento de precios, variaciones y rendimiento de cartera. El planteamiento del producto busca condensar información volátil de forma clara y accionable.",
+      "highlights": [
+        "Seguimiento de activos y cartera en tiempo real.",
+        "Gráficas históricas y alertas de variación.",
+        "Vista resumida de métricas clave para decisiones rápidas."
+      ],
       "technologies": ["React", "CoinGecko API"],
       "github": "#",
       "live": "#",
