@@ -77,90 +77,101 @@ export function Projects() {
 
         <div className="space-y-24 mb-24">
           {featuredProjects.map((project, index) => (
-            <article
+            <ScrollReveal
               key={project.title}
-              role="button"
-              tabIndex={0}
-              onClick={() => openProjectDetails(project)}
-              onKeyDown={(event) => handleProjectCardKeyDown(event, project)}
-              aria-label={`Ver detalles del proyecto ${project.title}`}
-              className={`grid lg:grid-cols-2 gap-8 items-center ${
-                index % 2 === 1 ? "lg:flex-row-reverse" : ""
-              } cursor-pointer rounded-3xl p-3 transition-colors hover:bg-card/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70`}
+              direction="up"
+              delay={200}
+              duration={800}
             >
-              <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                <div className="aspect-video rounded-xl bg-linear-to-br from-primary/20 to-accent/20 border border-border overflow-hidden group">
-                  {getProjectPreviewImage(project) ? (
-                    <img
-                      src={getProjectPreviewImage(project)}
-                      alt={project.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-card/50 group-hover:bg-card/30 transition-colors">
-                      <div className="text-center p-8">
-                        <Folder className="h-16 w-16 mx-auto text-primary/50 mb-4" />
-                        <span className="text-muted-foreground font-mono text-sm">
-                          Project Preview
-                        </span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div
-                className={`space-y-4 ${index % 2 === 1 ? "lg:order-1 lg:text-right" : ""}`}
+              <article
+                role="button"
+                tabIndex={0}
+                onClick={() => openProjectDetails(project)}
+                onKeyDown={(event) => handleProjectCardKeyDown(event, project)}
+                aria-label={`Ver detalles del proyecto ${project.title}`}
+                className={`grid lg:grid-cols-2 gap-8 items-center ${
+                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                } cursor-pointer rounded-3xl p-3 transition-colors hover:bg-card/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70`}
               >
-                <p className="text-primary font-mono text-sm">
-                  Featured Project
-                </p>
-                <h3 className="text-2xl font-bold">{project.title}</h3>
-                <p className="text-muted-foreground leading-relaxed p-6 bg-card rounded-xl border border-border text-pretty">
-                  {project.description}
-                </p>
-                <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary/80">
-                  Haz click para ver más detalles
-                </p>
+                <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                  <div className="aspect-video rounded-xl bg-linear-to-br from-primary/20 to-accent/20 border border-border overflow-hidden group">
+                    {getProjectPreviewImage(project) ? (
+                      <img
+                        src={getProjectPreviewImage(project)}
+                        alt={project.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-card/50 group-hover:bg-card/30 transition-colors">
+                        <div className="text-center p-8">
+                          <Folder className="h-16 w-16 mx-auto text-primary/50 mb-4" />
+                          <span className="text-muted-foreground font-mono text-sm">
+                            Project Preview
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div
-                  className={`flex flex-wrap gap-2 ${index % 2 === 1 ? "lg:justify-end" : ""}`}
+                  className={`space-y-4 ${index % 2 === 1 ? "lg:order-1 lg:text-right" : ""}`}
                 >
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full font-medium"
+                  <p className="text-primary font-mono text-sm">
+                    Featured Project
+                  </p>
+                  <h3 className="text-2xl font-bold">{project.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed p-6 bg-card rounded-xl border border-border text-pretty">
+                    {project.description}
+                  </p>
+                  <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary/80">
+                    Haz click para ver más detalles
+                  </p>
+                  <div
+                    className={`flex flex-wrap gap-2 ${index % 2 === 1 ? "lg:justify-end" : ""}`}
+                  >
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div
+                    className={`flex gap-4 pt-2 ${index % 2 === 1 ? "lg:justify-end" : ""}`}
+                  >
+                    <a
+                      href={project.github}
+                      className="text-foreground hover:text-primary transition-colors"
+                      onClick={preventModalOpen}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      {tech}
-                    </span>
-                  ))}
+                      <Github className="h-5 w-5" />
+                    </a>
+                    <a
+                      href={project.live}
+                      className="text-foreground hover:text-primary transition-colors"
+                      onClick={preventModalOpen}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="h-5 w-5" />
+                    </a>
+                  </div>
                 </div>
-                <div
-                  className={`flex gap-4 pt-2 ${index % 2 === 1 ? "lg:justify-end" : ""}`}
-                >
-                  <a
-                    href={project.github}
-                    className="text-foreground hover:text-primary transition-colors"
-                    onClick={preventModalOpen}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="h-5 w-5" />
-                  </a>
-                  <a
-                    href={project.live}
-                    className="text-foreground hover:text-primary transition-colors"
-                    onClick={preventModalOpen}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="h-5 w-5" />
-                  </a>
-                </div>
-              </div>
-            </article>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="space-y-8">
+        <ScrollReveal
+          className="space-y-8"
+          direction="up"
+          delay={200}
+          duration={800}
+        >
           <h3 className="text-2xl font-bold text-center">
             Otros proyectos destacables
           </h3>
@@ -237,7 +248,7 @@ export function Projects() {
               </a>
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       <ProjectModal
