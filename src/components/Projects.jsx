@@ -7,86 +7,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import projectsData from "@/data/projects.json";
 
-const featuredProjects = [
-  {
-    title: "E-Commerce Platform",
-    description:
-      "A full-stack e-commerce solution with real-time inventory management, secure payment processing, and an intuitive admin dashboard.",
-    image: null,
-    technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "AI Task Manager",
-    description:
-      "Smart task management app that uses AI to prioritize tasks, suggest deadlines, and improve productivity through intelligent automation.",
-    image: null,
-    technologies: ["React", "OpenAI API", "Firebase", "Tailwind"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "Real-Time Dashboard",
-    description:
-      "Interactive analytics dashboard featuring live data visualization, customizable widgets, and automated reporting capabilities.",
-    image: null,
-    technologies: ["React", "D3.js", "WebSocket", "Express"],
-    github: "#",
-    live: "#",
-  },
-];
-
-const otherProjects = [
-  {
-    title: "Weather App",
-    description:
-      "A beautiful weather application with location-based forecasts and interactive maps.",
-    technologies: ["React", "Weather API"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "Markdown Editor",
-    description:
-      "Real-time markdown editor with live preview and syntax highlighting.",
-    technologies: ["Vue.js", "Marked.js"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "Portfolio Template",
-    description:
-      "A customizable portfolio template for developers and designers.",
-    technologies: ["Next.js", "Tailwind"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "Chat Application",
-    description:
-      "Real-time chat app with rooms, direct messaging, and file sharing.",
-    technologies: ["Socket.io", "React"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "Recipe Finder",
-    description: "Search and discover recipes based on ingredients you have.",
-    technologies: ["React", "Spoonacular API"],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "Crypto Tracker",
-    description:
-      "Track cryptocurrency prices and portfolio performance in real-time.",
-    technologies: ["React", "CoinGecko API"],
-    github: "#",
-    live: "#",
-  },
-];
+const featuredProjects = projectsData.projects.filter(
+  (project) => project.featured,
+);
+const otherProjects = projectsData.projects.filter(
+  (project) => !project.featured,
+);
 
 /**
  * Componente de proyectos que muestra una sección con proyectos destacados y otros proyectos notables.
@@ -139,7 +67,7 @@ export function Projects() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="font-mono text-sm text-muted-foreground"
+                      className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full font-medium"
                     >
                       {tech}
                     </span>
@@ -172,7 +100,7 @@ export function Projects() {
 
         <div className="space-y-8">
           <h3 className="text-2xl font-bold text-center">
-            Other Noteworthy Projects
+            Otros proyectos destacables
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {otherProjects.map((project) => (
@@ -214,7 +142,7 @@ export function Projects() {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="font-mono text-xs text-muted-foreground"
+                        className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full font-medium"
                       >
                         {tech}
                       </span>
@@ -227,7 +155,7 @@ export function Projects() {
           <div className="text-center pt-8">
             <Button variant="outline" asChild>
               <a
-                href="https://github.com"
+                href={projectsData.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >

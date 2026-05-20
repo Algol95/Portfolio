@@ -1,0 +1,80 @@
+{
+  "githubUrl": "https://github.com",
+  "projects": [
+    {
+      "title": "E-Commerce Platform",
+      "description": "A full-stack e-commerce solution with real-time inventory management, secure payment processing, and an intuitive admin dashboard.",
+      "image": null,
+      "technologies": ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
+      "github": "#",
+      "live": "#",
+      "featured": true
+    },
+    {
+      "title": "AI Task Manager",
+      "description": "Smart task management app that uses AI to prioritize tasks, suggest deadlines, and improve productivity through intelligent automation.",
+      "image": null,
+      "technologies": ["React", "OpenAI API", "Firebase", "Tailwind"],
+      "github": "#",
+      "live": "#",
+      "featured": true
+    },
+    {
+      "title": "Real-Time Dashboard",
+      "description": "Interactive analytics dashboard featuring live data visualization, customizable widgets, and automated reporting capabilities.",
+      "image": null,
+      "technologies": ["React", "D3.js", "WebSocket", "Express"],
+      "github": "#",
+      "live": "#",
+      "featured": true
+    },
+    {
+      "title": "Weather App",
+      "description": "A beautiful weather application with location-based forecasts and interactive maps.",
+      "technologies": ["React", "Weather API"],
+      "github": "#",
+      "live": "#",
+      "featured": false
+    },
+    {
+      "title": "Markdown Editor",
+      "description": "Real-time markdown editor with live preview and syntax highlighting.",
+      "technologies": ["Vue.js", "Marked.js"],
+      "github": "#",
+      "live": "#",
+      "featured": false
+    },
+    {
+      "title": "Portfolio Template",
+      "description": "A customizable portfolio template for developers and designers.",
+      "technologies": ["Next.js", "Tailwind"],
+      "github": "#",
+      "live": "#",
+      "featured": false
+    },
+    {
+      "title": "Chat Application",
+      "description": "Real-time chat app with rooms, direct messaging, and file sharing.",
+      "technologies": ["Socket.io", "React"],
+      "github": "#",
+      "live": "#",
+      "featured": false
+    },
+    {
+      "title": "Recipe Finder",
+      "description": "Search and discover recipes based on ingredients you have.",
+      "technologies": ["React", "Spoonacular API"],
+      "github": "#",
+      "live": "#",
+      "featured": false
+    },
+    {
+      "title": "Crypto Tracker",
+      "description": "Track cryptocurrency prices and portfolio performance in real-time.",
+      "technologies": ["React", "CoinGecko API"],
+      "github": "#",
+      "live": "#",
+      "featured": false
+    }
+  ]
+}
