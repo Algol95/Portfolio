@@ -72,7 +72,7 @@ export default function ProjectModal({ open, project, onClose }) {
     };
   }, [open, onClose, hasMultipleImages, images.length]);
 
-  if (!open || !project) {
+  if (!project) {
     return null;
   }
 
@@ -92,12 +92,18 @@ export default function ProjectModal({ open, project, onClose }) {
 
   return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden bg-background/70 p-3 sm:p-4 backdrop-blur-sm"
+      className={`fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden bg-background/70 p-3 sm:p-4 backdrop-blur-sm duration-500 ${
+        open ? "animate-in fade-in-0" : "animate-out fade-out-0"
+      }`}
       onClick={onClose}
       role="presentation"
     >
       <div
-        className="relative max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl"
+        className={`relative max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl duration-500 ${
+          open
+            ? "animate-in fade-in-0 zoom-in-95 slide-in-from-bottom-4"
+            : "animate-out fade-out-0 zoom-out-95 slide-out-to-bottom-4"
+        }`}
         onClick={(event) => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -106,7 +112,7 @@ export default function ProjectModal({ open, project, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-background/80 text-foreground transition-colors hover:bg-background"
+          className="absolute right-4 top-4 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-background/80 text-foreground transition-colors hover:bg-background cursor-pointer"
           aria-label="Cerrar modal"
         >
           <X className="h-5 w-5" />
@@ -144,7 +150,7 @@ export default function ProjectModal({ open, project, onClose }) {
                   <button
                     type="button"
                     onClick={showPreviousImage}
-                    className="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg transition-colors hover:bg-background"
+                    className="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg transition-colors hover:bg-background cursor-pointer"
                     aria-label="Imagen anterior"
                   >
                     <ChevronLeft className="h-5 w-5" />
@@ -152,7 +158,7 @@ export default function ProjectModal({ open, project, onClose }) {
                   <button
                     type="button"
                     onClick={showNextImage}
-                    className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg transition-colors hover:bg-background"
+                    className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg transition-colors hover:bg-background cursor-pointer"
                     aria-label="Imagen siguiente"
                   >
                     <ChevronRight className="h-5 w-5" />

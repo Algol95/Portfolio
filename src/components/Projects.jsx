@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ExternalLink, Github, Folder } from "lucide-react";
 import {
   Card,
@@ -26,13 +26,33 @@ const otherProjects = projectsData.projects.filter(
  */
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+  const closeTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current !== null) {
+        window.clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const openProjectDetails = (project) => {
+    if (closeTimeoutRef.current !== null) {
+      window.clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+
     setSelectedProject(project);
+    setIsProjectModalOpen(true);
   };
 
   const closeProjectDetails = () => {
-    setSelectedProject(null);
+    setIsProjectModalOpen(false);
+    closeTimeoutRef.current = window.setTimeout(() => {
+      setSelectedProject(null);
+      closeTimeoutRef.current = null;
+    }, 220);
   };
 
   const handleProjectCardKeyDown = (event, project) => {
@@ -70,9 +90,11 @@ export function Projects() {
           duration={800}
         >
           <p className="text-primary font-mono text-sm tracking-wider uppercase">
-            Projects
+            Proyectos
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold">Things I've Built</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold">
+            Proyectos que he desarrollado
+          </h2>
         </ScrollReveal>
 
         <div className="space-y-24 mb-24">
@@ -91,7 +113,7 @@ export function Projects() {
                 aria-label={`Ver detalles del proyecto ${project.title}`}
                 className={`grid lg:grid-cols-2 gap-8 items-center ${
                   index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                } cursor-pointer rounded-3xl p-3 transition-colors hover:bg-card/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70`}
+                } cursor-pointer rounded-3xl p-3 transition-colors duration-500 hover:bg-card/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70 border border-transparent hover:border-primary/50`}
               >
                 <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
                   <div className="aspect-video rounded-xl bg-linear-to-br from-primary/20 to-accent/20 border border-border overflow-hidden group">
@@ -106,7 +128,7 @@ export function Projects() {
                         <div className="text-center p-8">
                           <Folder className="h-16 w-16 mx-auto text-primary/50 mb-4" />
                           <span className="text-muted-foreground font-mono text-sm">
-                            Project Preview
+                            Vista previa del proyecto
                           </span>
                         </div>
                       </div>
@@ -116,11 +138,8 @@ export function Projects() {
                 <div
                   className={`space-y-4 ${index % 2 === 1 ? "lg:order-1 lg:text-right" : ""}`}
                 >
-                  <p className="text-primary font-mono text-sm">
-                    Featured Project
-                  </p>
                   <h3 className="text-2xl font-bold">{project.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed p-6 bg-card rounded-xl border border-border text-pretty">
+                  <p className="text-muted-foreground leading-relaxed p-6 bg-card rounded-xl border text-justify border-border">
                     {project.description}
                   </p>
                   <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary/80">
@@ -177,64 +196,67 @@ export function Projects() {
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {otherProjects.map((project) => (
-              <Card
-                key={project.title}
-                role="button"
-                tabIndex={0}
-                onClick={() => openProjectDetails(project)}
-                onKeyDown={(event) => handleProjectCardKeyDown(event, project)}
-                aria-label={`Ver detalles del proyecto ${project.title}`}
-                className="group cursor-pointer hover:border-primary/50 transition-all hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70"
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <Folder className="h-10 w-10 text-primary" />
-                    <div className="flex gap-3">
-                      <a
-                        href={project.github}
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                        onClick={preventModalOpen}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-5 w-5" />
-                      </a>
-                      <a
-                        href={project.live}
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                        onClick={preventModalOpen}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-5 w-5" />
-                      </a>
-                    </div>
-                  </div>
-                  <CardTitle className="group-hover:text-primary transition-colors">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="text-pretty">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full font-medium"
+              <article key={project.title}>
+                <Card
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openProjectDetails(project)}
+                  onKeyDown={(event) =>
+                    handleProjectCardKeyDown(event, project)
+                  }
+                  aria-label={`Ver detalles del proyecto ${project.title}`}
+                  className="group cursor-pointer hover:border-primary/50 transition-all hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/70"
+                >
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <Folder className="h-10 w-10 text-primary" />
+                      <div className="flex gap-3">
+                        <a
+                          href={project.github}
+                          className="text-muted-foreground hover:text-foreground transition-colors"
+                          onClick={preventModalOpen}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          {tech}
-                        </span>
-                      ))}
+                          <Github className="h-5 w-5" />
+                        </a>
+                        <a
+                          href={project.live}
+                          className="text-muted-foreground hover:text-foreground transition-colors"
+                          onClick={preventModalOpen}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="h-5 w-5" />
+                        </a>
+                      </div>
                     </div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary/80">
-                      Abrir detalle del proyecto
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+                    <CardTitle className="group-hover:text-primary transition-colors">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-pretty">
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary/80">
+                        Abrir detalle del proyecto
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </article>
             ))}
           </div>
           <div className="text-center pt-8">
@@ -244,7 +266,7 @@ export function Projects() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View More on GitHub
+                Ver más en GitHub
               </a>
             </Button>
           </div>
@@ -258,7 +280,7 @@ export function Projects() {
           selectedProject?.title ??
           "project-modal"
         }
-        open={selectedProject !== null}
+        open={isProjectModalOpen}
         project={selectedProject}
         onClose={closeProjectDetails}
       />
