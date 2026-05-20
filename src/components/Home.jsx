@@ -1,35 +1,14 @@
-import { useEffect, useState } from "react";
 import { Mail, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ScrollReveal from "./ui/ScrollReveal";
+import TypewriterText from "./ui/TypewriterText";
 
+/**
+ * Componente que representa la sección de inicio del portafolio, mostrando información personal, enlaces a redes sociales y un efecto de máquina de escribir para los roles.
+ * @returns {JSX.Element} Componente Home.
+ */
 export function Home() {
-  const [text, setText] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
-  const fullText = "Full Stack Developer";
-
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index < fullText.length) {
-        setText(fullText.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const cursorTimer = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 530);
-    return () => clearInterval(cursorTimer);
-  }, []);
-
   return (
     <section className="min-h-screen flex flex-col justify-center px-6 pt-20">
       <ScrollReveal
@@ -52,14 +31,14 @@ export function Home() {
                   </span>
                 </h1>
                 <div className="h-8">
-                  <span className="font-mono text-xl text-muted-foreground">
-                    {text}
-                    <span
-                      className={`${showCursor ? "opacity-100" : "opacity-0"} transition-opacity`}
-                    >
-                      |
-                    </span>
-                  </span>
+                  <TypewriterText
+                    texts={[
+                      "Full Stack Developer",
+                      "Desarrollador Freelancer",
+                      "Especialista en APIs REST",
+                    ]}
+                    className="font-mono text-xl text-muted-foreground"
+                  />
                 </div>
               </div>
 
