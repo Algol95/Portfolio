@@ -118,7 +118,7 @@ export default function ProjectModal({ open, project, onClose }) {
           <X className="h-5 w-5" />
         </button>
 
-        <div className="grid max-h-[90vh] overflow-y-auto overflow-x-hidden lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+        <div className="modal-scrollbar grid max-h-[90vh] overflow-y-auto overflow-x-hidden lg:overflow-hidden lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div className="relative min-w-0 min-h-65 bg-linear-to-br from-primary/20 via-accent/10 to-background">
             <div className="relative aspect-4/3 h-full min-h-65 w-full overflow-hidden lg:min-h-full">
               {activeImage ? (
@@ -183,7 +183,7 @@ export default function ProjectModal({ open, project, onClose }) {
             </div>
           </div>
 
-          <div className="min-w-0 overflow-x-hidden p-5 sm:p-7 lg:p-10">
+          <div className="modal-scrollbar min-w-0 overflow-x-hidden p-5 sm:p-7 lg:max-h-[90vh] lg:overflow-y-auto lg:p-10">
             <div className="flex min-w-0 flex-col gap-6">
               <div className="min-w-0 space-y-3 pr-10 sm:pr-12">
                 <div className="flex flex-wrap items-center gap-3">
@@ -199,7 +199,7 @@ export default function ProjectModal({ open, project, onClose }) {
                 <h2 className="min-w-0 wrap-break-word text-2xl font-bold text-balance sm:text-3xl">
                   {project.title}
                 </h2>
-                <p className="min-w-0 wrap-break-word text-base leading-relaxed text-muted-foreground text-pretty">
+                <p className="min-w-0 wrap-break-word text-base leading-relaxed text-muted-foreground text-justify">
                   {project.detailedDescription ?? project.description}
                 </p>
               </div>
@@ -238,26 +238,30 @@ export default function ProjectModal({ open, project, onClose }) {
               </div>
 
               <div className="mt-auto flex min-w-0 flex-wrap gap-3 pt-2">
-                <Button asChild>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Ver proyecto
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </Button>
-                <Button variant="outline" asChild>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Código fuente
-                    <Github className="h-4 w-4" />
-                  </a>
-                </Button>
+                {project.live ? (
+                  <Button asChild>
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Ver proyecto
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </Button>
+                ) : null}
+                {project.github ? (
+                  <Button variant="outline" asChild>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Código fuente
+                      <Github className="h-4 w-4" />
+                    </a>
+                  </Button>
+                ) : null}
               </div>
             </div>
           </div>
@@ -270,9 +274,21 @@ export default function ProjectModal({ open, project, onClose }) {
 
 /**
  * PropTypes para el componente ProjectModal, definiendo las formas esperadas de las props y sus tipos.
- * - open: booleano que indica si el modal está abierto.
- * - project: objeto que representa el proyecto a mostrar, con propiedades como title, description, technologies, etc.
- * - onClose: función que se llama para cerrar el modal.
+ * @typedef {Object} ProjectModalProps
+ * @property {boolean} open - Indica si el modal está abierto o cerrado.
+ * @property {Object} project - Objeto que contiene los detalles del proyecto a mostrar en el modal.
+ * @property {string} project.title - El título del proyecto.
+ * @property {string} project.description - Una breve descripción del proyecto.
+ * @property {string} project.detailedDescription - Una descripción más detallada del proyecto.
+ * @property {Array<string>} project.technologies - Lista de tecnologías utilizadas en el proyecto.
+ * @property {Array<string>} project.highlights - Lista de puntos destacados del proyecto.
+ * @property {Array<string>} project.images - Lista de rutas de imágenes relacionadas con el proyecto.
+ * @property {string} project.github - URL del repositorio de GitHub del proyecto.
+ * @property {string} project.live - URL del proyecto en vivo.
+ * @property {boolean} project.featured - Indica si el proyecto está destacado.
+ * @property {string} project.status - Estado del proyecto.
+ * @property {Function} onClose - Función que se llama para cerrar el modal.
+ * @returns {JSX.Element|null} El componente del modal del proyecto o null si no está abierto.
  */
 ProjectModal.propTypes = {
   open: PropTypes.bool.isRequired,

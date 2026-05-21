@@ -121,14 +121,14 @@ export default function TypewriterText({
 
 /**
  * PropTypes para el componente TypewriterText, definiendo los tipos y requisitos de las props que el componente espera recibir.
- * - `texts`: Un array de strings que se mostrarán con el efecto de máquina de escribir. Es obligatorio.
- * - `className`: Clases CSS adicionales para el contenedor del texto. Es opcional.
- * - `typingSpeed`: Velocidad de escritura en milisegundos. Es opcional.
- * - `deletingSpeed`: Velocidad de borrado en milisegundos. Es opcional.
- * - `pauseDuration`: Duración de la pausa entre textos en milisegundos. Es opcional.
- * - `cursorBlinkSpeed`: Velocidad de parpadeo del cursor en milisegundos. Es opcional.
- * - `cursor`: Caracter del cursor. Es opcional.
- * Si se proporcionan textos no válidos (no strings), serán filtrados y el componente no mostrará nada si no quedan textos válidos.
+ * @typedef {Object} TypewriterTextProps
+ * @property {string[]} texts - Un array de strings que se mostrarán uno tras otro con el efecto de máquina de escribir. Requerido.
+ * @property {string} [className] - Clases CSS adicionales para el contenedor del texto. Opcional.
+ * @property {number} [typingSpeed] - Velocidad de escritura en milisegundos. Opcional, por defecto 100ms.
+ * @property {number} [deletingSpeed] - Velocidad de borrado en milisegundos. Opcional, por defecto 60ms.
+ * @property {number} [pauseDuration] - Duración de la pausa entre textos en milisegundos. Opcional, por defecto 1800ms.
+ * @property {number} [cursorBlinkSpeed] - Velocidad de parpadeo del cursor en milisegundos. Opcional, por defecto 530ms.
+ * @property {string} [cursor] - Caracter del cursor. Opcional, por defecto "|".
  */
 TypewriterText.propTypes = {
   texts: PropTypes.arrayOf(PropTypes.string).isRequired,
