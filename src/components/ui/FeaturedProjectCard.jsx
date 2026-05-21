@@ -106,9 +106,6 @@ export default function FeaturedProjectCard({
               <span className="rounded-full border border-primary/15 bg-primary/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.24em] text-primary">
                 Destacado
               </span>
-              <span className="font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               {project.status ? (
                 <span className="rounded-full border border-border bg-secondary/80 px-3 py-1 text-xs font-medium text-secondary-foreground">
                   {project.status}

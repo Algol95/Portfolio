@@ -99,7 +99,7 @@ export default function ProjectModal({ open, project, onClose }) {
       role="presentation"
     >
       <div
-        className={`relative max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl duration-500 ${
+        className={`relative max-h-[90vh] w-full max-w-340 overflow-hidden rounded-3xl border border-border bg-card shadow-2xl duration-500 ${
           open
             ? "animate-in fade-in-0 zoom-in-95 slide-in-from-bottom-4"
             : "animate-out fade-out-0 zoom-out-95 slide-out-to-bottom-4"

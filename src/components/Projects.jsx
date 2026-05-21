@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import projectsData from "@/data/projects.json";
-import FeaturedProjectCard from "@/components/FeaturedProjectCard";
+import FeaturedProjectCard from "@/components/ui/FeaturedProjectCard";
 import ProjectModal from "@/components/ui/ProjectModal";
-import ScrollReveal from "./ui/ScrollReveal";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const featuredProjects = projectsData.projects.filter(
   (project) => project.featured,
