@@ -4,7 +4,7 @@
     {
       "title": "Puerta de Awen",
       "description": "Desarrollo completo de una web de tarot para cliente real como proyecto freelance, abarcando tanto el frontend como el backend, con especial enfoque en la escalabilidad, reutilización de componentes y seguridad.",
-      "images": ["PUERTADEAWEN.gif"],
+      "images": ["puertadeawenhome.png"],
       "status": "Freelancer",
       "detailedDescription": "Proyecto freelance para un cliente real, donde se desarrolló una web de tarot desde cero. El enfoque principal fue crear una arquitectura escalable y modular usando React.js, con componentes reutilizables para facilitar futuras expansiones. Se implementó una API REST para manejar el sistema de correo automático. Además, se integraron medidas de seguridad como reCaptcha v3 para proteger contra bots y garantizar una experiencia segura para los usuarios.",
       "highlights": [
@@ -21,6 +21,8 @@
         "React.js",
         "Tailwind"
       ],
+      "videos": ["puertadeawen.mp4"],
+
       "live": "https://puertadeawen.com",
       "featured": true
     },
@@ -36,6 +38,16 @@
         "Dashboard con métricas de productividad y seguimiento de carga."
       ],
       "technologies": ["React", "OpenAI API", "Firebase", "Tailwind"],
+      "collaborators": [
+        {
+          "name": "Nombre del colaborador",
+          "linkedin": "https://www.linkedin.com/in/nombre-del-colaborador"
+        },
+        {
+          "name": "Nombre del colaborador",
+          "linkedin": "https://www.linkedin.com/in/nombre-del-colaborador"
+        }
+      ],
       "github": "#",
       "live": "#",
       "featured": true
@@ -52,6 +64,12 @@
         "Automatización de reportes y exportación de indicadores clave."
       ],
       "technologies": ["React", "D3.js", "WebSocket", "Express"],
+      "collaborators": [
+        {
+          "name": "Nombre del colaborador",
+          "linkedin": "https://www.linkedin.com/in/nombre-del-colaborador"
+        }
+      ],
       "github": "#",
       "live": "#",
       "featured": true

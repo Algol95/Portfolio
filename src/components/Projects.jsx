@@ -195,12 +195,12 @@ export function Projects() {
       </div>
 
       <ProjectModal
-        key={
+        key={`${
           selectedProject?.id ??
           selectedProject?.slug ??
           selectedProject?.title ??
           "project-modal"
-        }
+        }-${isProjectModalOpen ? "open" : "closed"}`}
         open={isProjectModalOpen}
         project={selectedProject}
         onClose={closeProjectDetails}

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   ChevronLeft,
@@ -7,10 +7,12 @@ import {
   ExternalLink,
   Folder,
   Github,
+  Linkedin,
+  Play,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { resolveProjectImagePath } from "@/lib/utils";
+import { resolveProjectImagePath, resolveProjectVideoPath } from "@/lib/utils";
 
 /**
  * Componente de modal para mostrar detalles de un proyecto.
@@ -21,18 +23,46 @@ import { resolveProjectImagePath } from "@/lib/utils";
  * @returns {JSX.Element|null} - El modal del proyecto o null si no está abierto.
  */
 export default function ProjectModal({ open, project, onClose }) {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  const [isActiveVideoPlaying, setIsActiveVideoPlaying] = useState(false);
+  const activeVideoRef = useRef(null);
   const images = Array.isArray(project?.images)
     ? project.images
         .map((image) => resolveProjectImagePath(image))
         .filter((image) => image !== null)
     : [];
-  const hasImages = images.length > 0;
-  const hasMultipleImages = images.length > 1;
-  const safeActiveImageIndex = hasImages
-    ? Math.min(activeImageIndex, images.length - 1)
+  const videos = Array.isArray(project?.videos)
+    ? project.videos
+        .map((video) => resolveProjectVideoPath(video))
+        .filter((video) => video !== null)
+    : [];
+  const mediaItems = [
+    ...images.map((src, index) => ({
+      type: "image",
+      src,
+      key: `image-${index}-${src}`,
+    })),
+    ...videos.map((src, index) => ({
+      type: "video",
+      src,
+      key: `video-${index}-${src}`,
+      poster: images[0] ?? null,
+    })),
+  ];
+  const collaborators = Array.isArray(project?.collaborators)
+    ? project.collaborators.filter(
+        (collaborator) =>
+          collaborator &&
+          typeof collaborator.name === "string" &&
+          collaborator.name.trim() !== "",
+      )
+    : [];
+  const hasMedia = mediaItems.length > 0;
+  const hasMultipleMedia = mediaItems.length > 1;
+  const safeActiveMediaIndex = hasMedia
+    ? Math.min(activeMediaIndex, mediaItems.length - 1)
     : 0;
-  const activeImage = hasImages ? images[safeActiveImageIndex] : null;
+  const activeMedia = hasMedia ? mediaItems[safeActiveMediaIndex] : null;
 
   useEffect(() => {
     if (!open) {
@@ -47,19 +77,21 @@ export default function ProjectModal({ open, project, onClose }) {
         onClose();
       }
 
-      if (event.key === "ArrowLeft" && hasMultipleImages) {
-        setActiveImageIndex((previousIndex) => {
+      if (event.key === "ArrowLeft" && hasMultipleMedia) {
+        setIsActiveVideoPlaying(false);
+        setActiveMediaIndex((previousIndex) => {
           if (previousIndex === 0) {
-            return images.length - 1;
+            return mediaItems.length - 1;
           }
 
           return previousIndex - 1;
         });
       }
 
-      if (event.key === "ArrowRight" && hasMultipleImages) {
-        setActiveImageIndex(
-          (previousIndex) => (previousIndex + 1) % images.length,
+      if (event.key === "ArrowRight" && hasMultipleMedia) {
+        setIsActiveVideoPlaying(false);
+        setActiveMediaIndex(
+          (previousIndex) => (previousIndex + 1) % mediaItems.length,
         );
       }
     };
@@ -70,24 +102,51 @@ export default function ProjectModal({ open, project, onClose }) {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [open, onClose, hasMultipleImages, images.length]);
+  }, [open, onClose, hasMultipleMedia, mediaItems.length]);
 
   if (!project) {
     return null;
   }
 
-  const showPreviousImage = () => {
-    setActiveImageIndex((previousIndex) => {
+  const goToMedia = (nextIndex) => {
+    setIsActiveVideoPlaying(false);
+    setActiveMediaIndex(nextIndex);
+  };
+
+  const toggleActiveVideoPlayback = async () => {
+    if (!activeVideoRef.current) {
+      return;
+    }
+
+    if (activeVideoRef.current.paused) {
+      try {
+        await activeVideoRef.current.play();
+      } catch {
+        setIsActiveVideoPlaying(false);
+      }
+
+      return;
+    }
+
+    activeVideoRef.current.pause();
+  };
+
+  const showPreviousMedia = () => {
+    setIsActiveVideoPlaying(false);
+    setActiveMediaIndex((previousIndex) => {
       if (previousIndex === 0) {
-        return images.length - 1;
+        return mediaItems.length - 1;
       }
 
       return previousIndex - 1;
     });
   };
 
-  const showNextImage = () => {
-    setActiveImageIndex((previousIndex) => (previousIndex + 1) % images.length);
+  const showNextMedia = () => {
+    setIsActiveVideoPlaying(false);
+    setActiveMediaIndex(
+      (previousIndex) => (previousIndex + 1) % mediaItems.length,
+    );
   };
 
   return createPortal(
@@ -121,12 +180,41 @@ export default function ProjectModal({ open, project, onClose }) {
         <div className="modal-scrollbar grid max-h-[90vh] overflow-y-auto overflow-x-hidden lg:overflow-hidden lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div className="relative min-w-0 min-h-65 bg-linear-to-br from-primary/20 via-accent/10 to-background">
             <div className="relative aspect-4/3 h-full min-h-65 w-full overflow-hidden lg:min-h-full">
-              {activeImage ? (
-                <img
-                  src={activeImage}
-                  alt={project.title}
-                  className="h-full w-full object-cover"
-                />
+              {activeMedia ? (
+                activeMedia.type === "video" ? (
+                  <>
+                    <video
+                      key={activeMedia.key}
+                      ref={activeVideoRef}
+                      src={activeMedia.src}
+                      poster={activeMedia.poster ?? undefined}
+                      controls
+                      preload="metadata"
+                      playsInline
+                      className="h-full w-full object-cover"
+                      aria-label={`${project.title} video de demostracion`}
+                      onPlay={() => setIsActiveVideoPlaying(true)}
+                      onPause={() => setIsActiveVideoPlaying(false)}
+                      onEnded={() => setIsActiveVideoPlaying(false)}
+                    />
+                    {!isActiveVideoPlaying ? (
+                      <button
+                        type="button"
+                        onClick={toggleActiveVideoPlayback}
+                        className="absolute left-1/2 top-1/2 z-10 inline-flex h-18 w-18 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-background/80 text-foreground shadow-xl backdrop-blur-sm transition-all hover:scale-105 hover:bg-background cursor-pointer"
+                        aria-label="Reproducir video"
+                      >
+                        <Play className="ml-1 h-7 w-7" fill="currentColor" />
+                      </button>
+                    ) : null}
+                  </>
+                ) : (
+                  <img
+                    src={activeMedia.src}
+                    alt={project.title}
+                    className="h-full w-full object-cover"
+                  />
+                )
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-linear-to-br from-primary/15 via-accent/10 to-secondary/40 p-8 text-center">
                   <div className="space-y-4">
@@ -145,36 +233,36 @@ export default function ProjectModal({ open, project, onClose }) {
                 </div>
               )}
 
-              {hasMultipleImages ? (
+              {hasMultipleMedia ? (
                 <>
                   <button
                     type="button"
-                    onClick={showPreviousImage}
+                    onClick={showPreviousMedia}
                     className="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg transition-colors hover:bg-background cursor-pointer"
-                    aria-label="Imagen anterior"
+                    aria-label="Medio anterior"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   <button
                     type="button"
-                    onClick={showNextImage}
+                    onClick={showNextMedia}
                     className="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg transition-colors hover:bg-background cursor-pointer"
-                    aria-label="Imagen siguiente"
+                    aria-label="Siguiente medio"
                   >
                     <ChevronRight className="h-5 w-5" />
                   </button>
                   <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-background/70 px-3 py-2 backdrop-blur-sm">
-                    {images.map((image, index) => (
+                    {mediaItems.map((mediaItem, index) => (
                       <button
-                        key={`${image}-${index}`}
+                        key={mediaItem.key}
                         type="button"
-                        onClick={() => setActiveImageIndex(index)}
+                        onClick={() => goToMedia(index)}
                         className={`h-2.5 w-2.5 rounded-full transition-all ${
-                          index === safeActiveImageIndex
+                          index === safeActiveMediaIndex
                             ? "bg-primary ring-4 ring-primary/20"
                             : "bg-foreground/30 hover:bg-foreground/50"
                         }`}
-                        aria-label={`Ir a la imagen ${index + 1}`}
+                        aria-label={`Ir al ${mediaItem.type === "video" ? "video" : "medio"} ${index + 1}`}
                       />
                     ))}
                   </div>
@@ -237,6 +325,37 @@ export default function ProjectModal({ open, project, onClose }) {
                 </div>
               </div>
 
+              {collaborators.length > 0 ? (
+                <div className="min-w-0 space-y-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">
+                    Colaboración
+                  </h3>
+                  <ul className="space-y-3">
+                    {collaborators.map((collaborator) => (
+                      <li
+                        key={`${project.title}-${collaborator.name}`}
+                        className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 bg-background/50 px-4 py-3"
+                      >
+                        <span className="font-medium text-foreground">
+                          {collaborator.name}
+                        </span>
+                        {collaborator.linkedin ? (
+                          <a
+                            href={collaborator.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                          >
+                            <Linkedin className="h-4 w-4" />
+                            LinkedIn
+                          </a>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
               <div className="mt-auto flex min-w-0 flex-wrap gap-3 pt-2">
                 {project.live ? (
                   <Button asChild>
@@ -283,6 +402,10 @@ export default function ProjectModal({ open, project, onClose }) {
  * @property {Array<string>} project.technologies - Lista de tecnologías utilizadas en el proyecto.
  * @property {Array<string>} project.highlights - Lista de puntos destacados del proyecto.
  * @property {Array<string>} project.images - Lista de rutas de imágenes relacionadas con el proyecto.
+ * @property {Array<string>} project.videos - Lista de rutas de videos relacionadas con el proyecto.
+ * @property {Array<Object>} project.collaborators - Lista de colaboradores del proyecto.
+ * @property {string} project.collaborators[].name - Nombre del colaborador.
+ * @property {string} project.collaborators[].linkedin - URL del perfil de LinkedIn del colaborador.
  * @property {string} project.github - URL del repositorio de GitHub del proyecto.
  * @property {string} project.live - URL del proyecto en vivo.
  * @property {boolean} project.featured - Indica si el proyecto está destacado.
@@ -299,6 +422,13 @@ ProjectModal.propTypes = {
     technologies: PropTypes.arrayOf(PropTypes.string),
     highlights: PropTypes.arrayOf(PropTypes.string),
     images: PropTypes.arrayOf(PropTypes.string),
+    videos: PropTypes.arrayOf(PropTypes.string),
+    collaborators: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        linkedin: PropTypes.string,
+      }),
+    ),
     github: PropTypes.string,
     live: PropTypes.string,
     featured: PropTypes.bool,
