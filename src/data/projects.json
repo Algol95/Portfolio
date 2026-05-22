@@ -21,7 +21,12 @@
         "React.js",
         "Tailwind"
       ],
-      "videos": ["puertadeawen.mp4"],
+      "videos": [
+        {
+          "src": "puertadeawen.mp4",
+          "poster": "puertadeawenhome.png"
+        }
+      ],
 
       "live": "https://puertadeawen.com",
       "featured": true

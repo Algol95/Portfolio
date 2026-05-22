@@ -33,7 +33,41 @@ export default function ProjectModal({ open, project, onClose }) {
     : [];
   const videos = Array.isArray(project?.videos)
     ? project.videos
-        .map((video) => resolveProjectVideoPath(video))
+        .map((video, index) => {
+          if (typeof video === "string") {
+            const resolvedVideo = resolveProjectVideoPath(video);
+
+            if (resolvedVideo === null) {
+              return null;
+            }
+
+            return {
+              src: resolvedVideo,
+              key: `video-${index}-${resolvedVideo}`,
+              poster: images[0] ?? null,
+            };
+          }
+
+          if (video && typeof video === "object") {
+            const resolvedVideo = resolveProjectVideoPath(video.src);
+
+            if (resolvedVideo === null) {
+              return null;
+            }
+
+            return {
+              src: resolvedVideo,
+              key: `video-${index}-${resolvedVideo}`,
+              poster:
+                resolveProjectImagePath(video.poster) ??
+                resolveProjectImagePath(video.previewImage) ??
+                images[0] ??
+                null,
+            };
+          }
+
+          return null;
+        })
         .filter((video) => video !== null)
     : [];
   const mediaItems = [
@@ -42,11 +76,11 @@ export default function ProjectModal({ open, project, onClose }) {
       src,
       key: `image-${index}-${src}`,
     })),
-    ...videos.map((src, index) => ({
+    ...videos.map((video) => ({
       type: "video",
-      src,
-      key: `video-${index}-${src}`,
-      poster: images[0] ?? null,
+      src: video.src,
+      key: video.key,
+      poster: video.poster,
     })),
   ];
   const collaborators = Array.isArray(project?.collaborators)
@@ -402,7 +436,9 @@ export default function ProjectModal({ open, project, onClose }) {
  * @property {Array<string>} project.technologies - Lista de tecnologías utilizadas en el proyecto.
  * @property {Array<string>} project.highlights - Lista de puntos destacados del proyecto.
  * @property {Array<string>} project.images - Lista de rutas de imágenes relacionadas con el proyecto.
- * @property {Array<string>} project.videos - Lista de rutas de videos relacionadas con el proyecto.
+ * @property {Array<string|Object>} project.videos - Lista de videos o configuraciones de video relacionadas con el proyecto.
+ * @property {string} project.videos[].src - Ruta del video.
+ * @property {string} project.videos[].poster - Ruta de la imagen previa del video.
  * @property {Array<Object>} project.collaborators - Lista de colaboradores del proyecto.
  * @property {string} project.collaborators[].name - Nombre del colaborador.
  * @property {string} project.collaborators[].linkedin - URL del perfil de LinkedIn del colaborador.
@@ -422,7 +458,16 @@ ProjectModal.propTypes = {
     technologies: PropTypes.arrayOf(PropTypes.string),
     highlights: PropTypes.arrayOf(PropTypes.string),
     images: PropTypes.arrayOf(PropTypes.string),
-    videos: PropTypes.arrayOf(PropTypes.string),
+    videos: PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          src: PropTypes.string.isRequired,
+          poster: PropTypes.string,
+          previewImage: PropTypes.string,
+        }),
+      ]),
+    ),
     collaborators: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
