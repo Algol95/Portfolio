@@ -14,4 +14,17 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
 # Portfolio
+
+## reCAPTCHA v3
+
+Para activar Google reCAPTCHA v3 en el formulario de contacto, crea un archivo `.env` a partir de `.env.example` y define:
+
+`VITE_RECAPTCHA_SITE_KEY=tu_site_key`
+
+La app ya queda preparada para:
+
+- cargar el proveedor global de reCAPTCHA
+- solicitar un token al enviar el formulario de contacto
+- adjuntar ese token al payload enviado al backend

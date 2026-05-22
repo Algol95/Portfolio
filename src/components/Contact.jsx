@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
+import { useRecaptchaToken } from "@/hooks/use-recaptcha-token";
 
 const projectTypeOptions = [
   { value: "web", label: "Página Web" },
@@ -31,6 +32,8 @@ const projectTypeOptions = [
  */
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const { getRecaptchaToken, isRecaptchaEnabled, isRecaptchaReady } =
+    useRecaptchaToken();
   const {
     control,
     register,
@@ -60,7 +63,12 @@ export function Contact() {
   }, [submitted]);
 
   const onSubmit = async (data) => {
-    await sendContactMessage(data);
+    const recaptchaToken = await getRecaptchaToken("contact_form_submit");
+
+    await sendContactMessage({
+      ...data,
+      recaptchaToken,
+    });
 
     setSubmitted(true);
     reset();
@@ -237,13 +245,17 @@ export function Contact() {
                   type="submit"
                   size="lg"
                   className="w-full"
-                  disabled={isSubmitting}
+                  disabled={
+                    isSubmitting || (isRecaptchaEnabled && !isRecaptchaReady)
+                  }
                 >
                   {isSubmitting ? (
                     <>
                       <span className="animate-spin mr-2">⏳</span>
                       Enviando...
                     </>
+                  ) : isRecaptchaEnabled && !isRecaptchaReady ? (
+                    <>Preparando verificación...</>
                   ) : (
                     <>
                       <Send className="mr-2 h-5 w-5" />
