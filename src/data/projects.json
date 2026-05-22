@@ -6,7 +6,7 @@
       "description": "Desarrollo completo de una web de tarot para cliente real como proyecto freelance, abarcando tanto el frontend como el backend, con especial enfoque en la escalabilidad, reutilización de componentes y seguridad.",
       "images": ["puertadeawenhome.png"],
       "status": "Freelancer",
-      "detailedDescription": "Proyecto freelance para un cliente real, donde se desarrolló una web de tarot desde cero. El enfoque principal fue crear una arquitectura escalable y modular usando React.js, con componentes reutilizables para facilitar futuras expansiones. Se implementó una API REST para manejar el sistema de correo automático. Además, se integraron medidas de seguridad como reCaptcha v3 para proteger contra bots y garantizar una experiencia segura para los usuarios.",
+      "detailedDescription": "Proyecto freelance para un cliente real, donde se desarrolló una web de tarot desde cero. El enfoque principal fue crear una arquitectura escalable y modular usando React.js, con componentes reutilizables para facilitar futuras expansiones. <br/><br/>Se implementó una API REST para manejar el sistema de correo automático. Además, se integraron medidas de seguridad como reCaptcha v3 para proteger contra bots y garantizar una experiencia segura para los usuarios.",
       "highlights": [
         "Frontend implementado con React + Vite, JavaScript y TailwindCSS, con enfoque en componentes reutilizables y diseño responsive.",
         "Backend con Java 17 y Spring Boot con Spring Mail y validación de DTOs, creando una API REST para gestionar el sistema de correo automático.",
@@ -32,147 +32,242 @@
       "featured": true
     },
     {
-      "title": "Gestor de Tareas con IA",
-      "description": "Aplicación de gestión de tareas que utiliza IA para priorizar trabajo, sugerir plazos y mejorar la productividad mediante automatización inteligente.",
-      "images": [],
-      "status": "Demo conceptual",
-      "detailedDescription": "Una aplicación de productividad orientada a priorizar trabajo de forma automática. El objetivo es reducir la fricción en la organización diaria combinando una interfaz rápida con sugerencias generadas a partir del contexto de cada tarea.",
-      "highlights": [
-        "Priorización automática en función de urgencia, contexto e histórico.",
-        "Sugerencias de deadlines y bloques de trabajo asistidos por IA.",
-        "Dashboard con métricas de productividad y seguimiento de carga."
+      "title": "Spellbook PDF Generator",
+      "description": "Spellbook Generator es una aplicación web que permite crear grimorios de hechizos personalizados para partidas de Dragones y Mazmorras, generando documentos PDF con una estética inspirada en manuscritos arcanos clásicos.",
+      "images": ["spellbook1.png", "spellbook2.png"],
+      "videos": [
+        {
+          "src": "spellbook.mp4",
+          "poster": "spellbook1.png"
+        }
       ],
-      "technologies": ["React", "OpenAI API", "Firebase", "Tailwind"],
+      "status": "Freelancer",
+      "detailedDescription": "Spellbook Generator es una aplicación web que permite crear grimorios de hechizos personalizados para partidas de Dragones y Mazmorras, generando documentos PDF con una estética inspirada en manuscritos arcanos clásicos. <br/><br/>La idea surgió al crear un personaje mago para D&D 3.5 y no encontrar ninguna herramienta que ofreciese una experiencia realmente cuidada a nivel visual y de presentación. La mayoría de opciones existentes resolvían la parte funcional, pero no transmitían la sensación de estar trabajando con un auténtico grimorio. <br/><br/> El objetivo del proyecto fue precisamente ese: desarrollar una herramienta que no solo generase información, sino también una experiencia más inmersiva y coherente con el universo del juego.",
+      "highlights": [
+        "Generación automática de grimorios en PDF",
+        "Diseño visual inspirado en libros de hechizos clásicos",
+        "Personalización completa de conjuros y descripciones",
+        "Elementos gráficos dinámicos según nivel y escuela de magia",
+        "Persistencia local para continuar editando posteriormente",
+        "Soporte multidioma (Español e Inglés)"
+      ],
+      "technologies": ["React + Vite", "TypeScript", "Tailwind CSS"],
+      "github": "https://github.com/Algol95/SpellBook-DnD3.5",
+      "live": "https://spellbookgenerator.netlify.app",
+      "featured": true
+    },
+    {
+      "title": "TEvoSales",
+      "description": "Proyecto académico para IES Doctor Fleming donde se simula un eCommerce.",
+      "images": [
+        "tevosales1.png",
+        "tevosales2.png",
+        "tevosales3.png",
+        "tevosales4.png"
+      ],
+      "status": "Académico",
+      "detailedDescription": "Proyecto académico para final de curso IES Doctor Fleming valorado con un sobresaliente. <br/><br/>TEvoSales Frontend es una Marketplace de productos de traumatología y ortopedia, conformada por una API rest en el backendend con tecnologías como Java, Springboot y autenticación con JWT. El frontend esta desarrollado con React y Vite que sirve como interfaz de usuario para la gestión y visualización de ventas. La aplicación está diseñada para ser rápida, moderna y fácil de mantener, utilizando las últimas tecnologías del ecosistema JavaScript. <br/><br/><span class='text-sm text-primary'>El host del back es gratuito y puede tardar un poco en iniciarse nuevamente.</span>",
+      "highlights": [
+        "Login de usuarios con autenticación JWT y gestión de sesiones.",
+        "Roles de usario con permisos diferenciados para clientes, administradores y entidades.",
+        "Visualización de productos con filtros, paginación y búsqueda avanzada.",
+        "Carrito de compras con persistencia local y proceso de checkout simulado.",
+        "Panel de administración para gestión de productos, pedidos y usuarios.",
+        "Visualización de estadísticas de ventas con gráficos dinámicos.",
+        "Diseño responsive."
+      ],
+      "technologies": [
+        "React + Vite",
+        "Tailwind CSS",
+        "JavaScript",
+        "Java",
+        "Spring Boot",
+        "Spring Security",
+        "JPA",
+        "JWT",
+        "MySQL"
+      ],
+      "github": "https://github.com/TraumaticEvolutions",
+      "live": " https://tevosales.netlify.app/",
+      "featured": true
+    },
+    {
+      "title": "ReVive",
+      "description": "Aplicación de reciclaje finalista en el Hackathon 2025 de la Fundación Somos F5 para brindar nueva vida a nuestros queridos objetos.",
+      "images": ["revive.png"],
+      "status": "Hackathon 2025 - Fundación Somos F5",
+      "detailedDescription": "ReVive es una plataforma para comprar y vender artículos de segunda mano, promoviendo la sostenibilidad y reduciendo los residuos. Construida con React para el frontend y Java para el backend, utiliza MySQL para la gestión de datos. Aunque el almacenamiento en la nube está planteado teóricamente en AWS, nuestro enfoque sigue estando en la asequibilidad y la eficiencia.<br/><br/>Al prolongar el ciclo de vida de los productos, nuestro marketplace apoya la economía circular, fomentando un consumo responsable y minimizando nuestro impacto medioambiental.",
+      "highlights": [
+        "Scrum Master y desarrollador frontend.",
+        "Equipos de backend y frontend.",
+        "Metodología ágil y documentación.",
+        "Gestión de tareas con Jira"
+      ],
+      "technologies": [
+        "Scrum",
+        "Java",
+        "SpringBoot",
+        "Spring Security",
+        "API Rest",
+        "React",
+        "JavaScript",
+        "Tailwind CSS",
+        "MySQL",
+        "Figma",
+        "Jira"
+      ],
       "collaborators": [
         {
-          "name": "Nombre del colaborador",
-          "linkedin": "https://www.linkedin.com/in/nombre-del-colaborador"
+          "name": "Paloma Babot",
+          "linkedin": "https://www.linkedin.com/in/palomababot/"
         },
         {
-          "name": "Nombre del colaborador",
-          "linkedin": "https://www.linkedin.com/in/nombre-del-colaborador"
+          "name": "Karina Lorenzo",
+          "linkedin": "https://www.linkedin.com/in/karina-lorenzo/"
+        },
+        {
+          "name": "Lanny Rivero Canino",
+          "linkedin": "https://www.linkedin.com/in/lanny-rivero/"
+        },
+        {
+          "name": "Kat Leverton",
+          "linkedin": "https://www.linkedin.com/in/kat-leverton/"
+        },
+        {
+          "name": "Santino Vigna Tiburzi",
+          "linkedin": "https://www.linkedin.com/in/santinovignatiburzi/"
         }
       ],
-      "github": "#",
-      "live": "#",
+      "github": "https://github.com/Hackathon-ReVive",
       "featured": true
     },
     {
-      "title": "Panel Analítico en Tiempo Real",
-      "description": "Dashboard analítico interactivo con visualización de datos en vivo, widgets personalizables y generación automatizada de informes.",
-      "images": [],
-      "status": "Producción",
-      "detailedDescription": "Un dashboard de analítica en tiempo real diseñado para visualizar eventos y métricas críticas sin sacrificar rendimiento. La interfaz está pensada para operar con datos vivos, filtros combinables y módulos personalizables por usuario.",
+      "title": "Biblioteca Digital",
+      "description": "Proyecto académico que simula una biblioteca digital.",
+      "images": ["bibliotecadigital1.jpg", "bibliotecadigital2.jpg"],
+      "status": "Académico",
+      "detailedDescription": "Proyecto académico que simula una biblioteca digital. El objetivo del proyecto fue desarrollar una aplicación web que permita a los usuarios explorar, buscar y gestionar una colección de libros digitales. La aplicación está diseñada para ser intuitiva y fácil de usar, con un enfoque en la experiencia del usuario, tema claro/oscuro.",
       "highlights": [
-        "Visualizaciones dinámicas conectadas por WebSocket.",
-        "Widgets configurables y diseño adaptable a distintos roles.",
-        "Automatización de reportes y exportación de indicadores clave."
+        "Exploración y busqueda de libros avanzada con   filtros de categoría y título.",
+        "Panel de administración para gestión de libros (CRUD).",
+        "Integración de metadatos con la API de OpenLibrary.",
+        "Diseño adaptable y responsive",
+        "Cambio de tema claro/oscuro para mejorar la experiencia."
       ],
-      "technologies": ["React", "D3.js", "WebSocket", "Express"],
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Bootstrap",
+        "POO",
+        "Jira",
+        "JSON"
+      ],
       "collaborators": [
         {
-          "name": "Nombre del colaborador",
-          "linkedin": "https://www.linkedin.com/in/nombre-del-colaborador"
+          "name": "Nico Fernández Rozas",
+          "linkedin": "https://www.linkedin.com/in/nicoferrozas/"
         }
       ],
-      "github": "#",
-      "live": "#",
-      "featured": true
-    },
-    {
-      "title": "Aplicación del Tiempo",
-      "description": "Aplicación meteorológica con previsiones por ubicación y mapas interactivos.",
-      "images": [],
-      "status": "Proyecto personal",
-      "detailedDescription": "Aplicación meteorológica orientada a consulta rápida, con previsión por ubicación y foco en una experiencia visual clara tanto en escritorio como en móvil.",
-      "highlights": [
-        "Búsqueda por ubicación con previsión actual y semanal.",
-        "Mapas interactivos y estados visuales según condiciones climáticas.",
-        "Interfaz optimizada para consulta rápida en móvil."
-      ],
-      "technologies": ["React", "Weather API"],
-      "github": "#",
-      "live": "#",
+      "github": "https://github.com/Algol95/Biblioteca-Digital",
+      "live": "https://algol95.github.io/Biblioteca-Digital/index.html",
       "featured": false
     },
     {
-      "title": "Editor Markdown",
-      "description": "Editor Markdown en tiempo real con vista previa instantánea y resaltado de sintaxis.",
-      "images": [],
-      "status": "Herramienta",
-      "detailedDescription": "Editor enfocado a escritura técnica y documentación, con previsualización instantánea y una interfaz ligera para mantener el flujo de trabajo sin distracciones.",
+      "title": "Paws&Claws",
+      "description": "Paws&Claws es una aplicación web desarrollada con React y Vite que permite a los usuarios explorar, adoptar y gestionar gatitos.",
+      "images": ["paws&claws(1).jpg", "paws&claws(2).jpg"],
+      "status": "Académico",
+      "detailedDescription": "Paws&Claws es una aplicación web moderna desarrollada con React y Vite que permite a los usuarios explorar, adoptar y gestionar sus gatos favoritos. <br/><br/>Incluye un carrusel interactivo, formulario de adopción con validación, sistema de favoritos persistente y soporte para temas claro/oscuro e internacionalización.",
       "highlights": [
-        "Edición y preview en paralelo con renderizado inmediato.",
-        "Soporte de resaltado de sintaxis y estructura de documentos.",
-        "Base pensada para exportación o integración en CMS internos."
+        "Carrusel de Gatos: Navega entre adorables gatos en un carrusel dinámico.",
+        "Formulario de Adopción: Envía solicitudes con validación y buena experiencia de usuario.",
+        "Favoritos Persistentes: Añade o elimina gatos favoritos, guardados en localStorage.",
+        "Modo Claro/Oscuro: Interfaz adaptable según tus preferencias visuales.",
+        "Soporte Multilenguaje: Disponible en español e inglés gracias a react-i18next.",
+        "Animaciones Lottie: Animaciones elegantes para páginas de error o en construcción."
       ],
-      "technologies": ["Vue.js", "Marked.js"],
-      "github": "#",
-      "live": "#",
+      "technologies": [
+        "React + Vite",
+        "JavaScript",
+        "Tailwind CSS",
+        "react-i18next",
+        "Lottie",
+        "Validación"
+      ],
+      "collaborators": [
+        {
+          "name": "Nico Fernández Rozas",
+          "linkedin": "https://www.linkedin.com/in/nicoferrozas/"
+        },
+        {
+          "name": "Ana Castro",
+          "linkedin": "https://www.linkedin.com/in/anabcastro/"
+        }
+      ],
+      "github": "https://github.com/srlsrx/MichisApp",
       "featured": false
     },
     {
-      "title": "Plantilla de Portfolio",
-      "description": "Plantilla de portfolio personalizable para desarrolladores y diseñadores.",
-      "images": [],
-      "status": "Plantilla",
-      "detailedDescription": "Template de portfolio modular y fácilmente adaptable a distintos perfiles. Está pensado para personalizar contenido, estilos y secciones sin tocar la estructura principal del proyecto.",
+      "title": "Michiverso",
+      "description": "¡Eres Netmichi, un super michi dispuesto a salvar el mundo michi!",
+      "images": ["michiverso-start.jpg", "michiverso-play.jpg"],
+      "status": "Académico",
+      "detailedDescription": "Los michis han perdido sus michicódigos de michiseguridad para abrir el michiportal a NipParadise. Pero ten michicuidado, los malvados cuervos te lo impedirán. <br/><br/>Proyecto enfocado al aprendizaje de POO y herencias en JS. Responsive y jugable tanto versión PC como Movile.",
       "highlights": [
-        "Secciones configurables y datos externos desacoplados del render.",
-        "Diseño responsive con identidad visual moderna.",
-        "Base preparada para ampliarse con blog, demos o CMS."
+        "Juego de plataformas 2D con mecánicas de salto.",
+        "Sistema de vidas y niveles progresivos de dificultad.",
+        "Diseño visual inspirado en el universo michi, con gráficos futuristas y coloridos.",
+        "Diseño responsive y jugable tanto en PC como en móvil, con controles adaptados a cada plataforma."
       ],
-      "technologies": ["Next.js", "Tailwind"],
-      "github": "#",
-      "live": "#",
+      "technologies": [
+        "HTML5",
+        "CSS3",
+        "Bootstrap",
+        "JavaScript",
+        "POO",
+        "Photoshop"
+      ],
+      "github": "https://github.com/Algol95/juego-POO",
+      "live": "https://algol95.github.io/juego-POO/",
       "featured": false
     },
     {
-      "title": "Aplicación de Chat",
-      "description": "Aplicación de chat en tiempo real con salas, mensajes directos y uso compartido de archivos.",
-      "images": [],
-      "status": "Tiempo real",
-      "detailedDescription": "Aplicación de mensajería en tiempo real con foco en interacción fluida entre usuarios, gestión de salas y base para colaboración entre equipos pequeños.",
+      "title": "XYLOPHONE",
+      "description": "Proyecto interactivo para Factoria F5 que simula la pagina web de una escuela de música con la posibilidad de interactuar con un instrumento musical, un xilófono.",
+      "images": ["xylophone.png"],
+      "status": "Académico",
+      "detailedDescription": "Proyecto interactivo para Factoria F5 que simula la pagina web de una escuela de música con la posibilidad de interactuar con un instrumento musical, un xilófono.",
       "highlights": [
-        "Salas temáticas, mensajes directos y presencia de usuarios.",
-        "Arquitectura orientada a eventos para mensajes en tiempo real.",
-        "Capacidad de adjuntar archivos y ampliar moderación más adelante."
+        "SCRUM Master y metodología ágil.",
+        "Notas emuladas con código JavaScript para optimizar navegación y rendimiento.",
+        "Interacción con un xilófono virtual para crear melodías personalizadas.",
+        "Melodías automatizadas ya predefinidas.",
+        "Interfaz centrada en simplicidad y rapidez de uso.",
+        "Diseño responsive.",
+        "Organización de tareas mediante Jira."
       ],
-      "technologies": ["Socket.io", "React"],
-      "github": "#",
-      "live": "#",
-      "featured": false
-    },
-    {
-      "title": "Buscador de Recetas",
-      "description": "Busca y descubre recetas en función de los ingredientes que tienes disponibles.",
-      "images": [],
-      "status": "Utilidad",
-      "detailedDescription": "Proyecto orientado a resolver una necesidad cotidiana: descubrir recetas útiles a partir de ingredientes disponibles. La experiencia está planteada para ser directa y visual.",
-      "highlights": [
-        "Búsqueda por ingredientes existentes en casa.",
-        "Resultados con pasos, tiempos y combinaciones sugeridas.",
-        "Interfaz centrada en simplicidad y rapidez de uso."
+      "technologies": [
+        "Scrum",
+        "HTML5",
+        "CSS3",
+        "Bootstrap",
+        "JavaScript",
+        "SASS",
+        "Figma"
       ],
-      "technologies": ["React", "Spoonacular API"],
-      "github": "#",
-      "live": "#",
-      "featured": false
-    },
-    {
-      "title": "Seguimiento de Criptomonedas",
-      "description": "Sigue precios de criptomonedas y el rendimiento de tu cartera en tiempo real.",
-      "images": [],
-      "status": "Fintech",
-      "detailedDescription": "Monitor de mercado cripto orientado a seguimiento de precios, variaciones y rendimiento de cartera. El planteamiento del producto busca condensar información volátil de forma clara y accionable.",
-      "highlights": [
-        "Seguimiento de activos y cartera en tiempo real.",
-        "Gráficas históricas y alertas de variación.",
-        "Vista resumida de métricas clave para decisiones rápidas."
+      "collaborators": [
+        {
+          "name": "Ana Castro",
+          "linkedin": "https://www.linkedin.com/in/anabcastro/"
+        },
+        {
+          "name": "Sergio Jorquera Gimeno",
+          "linkedin": "https://www.linkedin.com/in/sergio-jorquera/"
+        }
       ],
-      "technologies": ["React", "CoinGecko API"],
-      "github": "#",
-      "live": "#",
+      "github": "https://github.com/Algol95/toquen-DOM",
+      "live": "https://algol95.github.io/toquen-DOM/pages/instrument.html",
       "featured": false
     }
   ]

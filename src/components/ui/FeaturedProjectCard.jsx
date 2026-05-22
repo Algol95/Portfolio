@@ -117,9 +117,10 @@ export default function FeaturedProjectCard({
               <h3 className="max-w-xl text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
                 {project.title}
               </h3>
-              <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground">
-                {project.description}
-              </p>
+              <div
+                className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground"
+                dangerouslySetInnerHTML={{ __html: project.description }}
+              />
             </div>
 
             <div className="flex flex-wrap gap-2">

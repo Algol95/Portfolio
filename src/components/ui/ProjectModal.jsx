@@ -321,9 +321,12 @@ export default function ProjectModal({ open, project, onClose }) {
                 <h2 className="min-w-0 wrap-break-word text-2xl font-bold text-balance sm:text-3xl">
                   {project.title}
                 </h2>
-                <p className="min-w-0 wrap-break-word text-base leading-relaxed text-muted-foreground text-justify">
-                  {project.detailedDescription ?? project.description}
-                </p>
+                <div
+                  className="min-w-0 wrap-break-word text-base leading-relaxed text-muted-foreground text-justify"
+                  dangerouslySetInnerHTML={{
+                    __html: project.detailedDescription ?? project.description,
+                  }}
+                />
               </div>
 
               {Array.isArray(project.highlights) &&

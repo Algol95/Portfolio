@@ -155,9 +155,10 @@ export function Projects() {
                     <CardTitle className="group-hover:text-primary transition-colors">
                       {project.title}
                     </CardTitle>
-                    <CardDescription className="text-pretty">
-                      {project.description}
-                    </CardDescription>
+                    <CardDescription
+                      className="text-pretty"
+                      dangerouslySetInnerHTML={{ __html: project.description }}
+                    />
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
