@@ -235,7 +235,7 @@ export default function ProjectModal({ open, project, onClose }) {
                       <button
                         type="button"
                         onClick={toggleActiveVideoPlayback}
-                        className="absolute left-1/2 top-1/2 z-10 inline-flex h-18 w-18 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-background/80 text-foreground shadow-xl backdrop-blur-sm transition-all hover:scale-105 hover:bg-background cursor-pointer"
+                        className="absolute left-1/2 top-1/2 z-10 hidden h-18 w-18 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-background/80 text-foreground shadow-xl backdrop-blur-sm transition-all hover:scale-105 hover:bg-background cursor-pointer sm:inline-flex"
                         aria-label="Reproducir video"
                       >
                         <Play className="ml-1 h-7 w-7" fill="currentColor" />
