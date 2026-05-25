@@ -1,6 +1,8 @@
 import { FaJava } from "react-icons/fa";
 import {
+  SiAxios,
   SiReact,
+  SiGoogle,
   SiSpring,
   SiTailwindcss,
   SiGit,
@@ -23,6 +25,8 @@ import {
 
 export const technologyIcons = {
   FaJava,
+  SiAxios,
+  SiGoogle,
   SiSpring,
   SiReact,
   SiTailwindcss,

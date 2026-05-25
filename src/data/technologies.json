@@ -1,8 +1,11 @@
 [
   { "name": "Java", "icon": "FaJava", "level": 85 },
   { "name": "Spring", "icon": "SiSpring", "level": 80 },
+  { "name": "Spring Boot", "icon": "SiSpring", "level": 80 },
   { "name": "React", "icon": "SiReact", "level": 75 },
   { "name": "Tailwind CSS", "icon": "SiTailwindcss", "level": 75 },
+  { "name": "Axios", "icon": "SiAxios", "level": 75 },
+  { "name": "Google reCAPTCHA v3", "icon": "SiGoogle", "level": 70 },
   { "name": "Python", "icon": "SiPython", "level": 70 },
   { "name": "Django", "icon": "SiDjango", "level": 65 },
   { "name": "MySql", "icon": "SiMysql", "level": 80 },
