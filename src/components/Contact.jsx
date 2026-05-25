@@ -17,7 +17,7 @@ import { Select } from "@/components/ui/Select";
 import { Textarea } from "@/components/ui/Textarea";
 import { useRecaptchaToken } from "@/hooks/use-recaptcha-token";
 
-const projectTypeOptions = [
+const subjectOptions = [
   { value: "web", label: "Página Web" },
   { value: "app", label: "Aplicación Web" },
   { value: "mobile", label: "App Móvil" },
@@ -26,12 +26,16 @@ const projectTypeOptions = [
   { value: "other", label: "Otro" },
 ];
 
+const genericSubmitErrorMessage =
+  "No se ha podido enviar el mensaje. Inténtalo de nuevo más tarde.";
+
 /**
  * Componente de contacto que permite a los usuarios enviar mensajes a través de un formulario. El componente maneja el estado del formulario, la validación de los campos y el envío de los datos. También muestra un mensaje de confirmación cuando el mensaje se envía correctamente. El formulario incluye campos para el nombre, correo electrónico, empresa, tipo de proyecto y mensaje, y utiliza componentes personalizados para mejorar la experiencia del usuario. Además, proporciona información de contacto adicional y enlaces a redes sociales.
  * @returns {JSX.Element} Componente de contacto.
  */
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const { getRecaptchaToken, isRecaptchaEnabled, isRecaptchaReady } =
     useRecaptchaToken();
   const {
@@ -45,7 +49,7 @@ export function Contact() {
       name: "",
       email: "",
       company: "",
-      projectType: "",
+      subject: "",
       message: "",
     },
   });
@@ -63,15 +67,31 @@ export function Contact() {
   }, [submitted]);
 
   const onSubmit = async (data) => {
-    const recaptchaToken = await getRecaptchaToken("contact_form_submit");
+    setSubmitError("");
 
-    await sendContactMessage({
-      ...data,
-      recaptchaToken,
-    });
+    try {
+      const recaptchaToken = await getRecaptchaToken("contact_form_submit");
 
-    setSubmitted(true);
-    reset();
+      if (isRecaptchaEnabled && !recaptchaToken) {
+        setSubmitError(genericSubmitErrorMessage);
+        return;
+      }
+
+      const response = await sendContactMessage({
+        ...data,
+        recaptchaToken,
+      });
+
+      if (!response?.ok) {
+        setSubmitError(genericSubmitErrorMessage);
+        return;
+      }
+
+      setSubmitted(true);
+      reset();
+    } catch {
+      setSubmitError(genericSubmitErrorMessage);
+    }
   };
 
   return (
@@ -181,32 +201,32 @@ export function Contact() {
                   </div>
                   <div className="space-y-2">
                     <label
-                      htmlFor="projectType"
+                      htmlFor="subject"
                       className="text-sm font-medium flex items-center gap-2"
                     >
                       <Building2 className="h-4 w-4 text-muted-foreground" />
                       Tipo de Proyecto
                     </label>
                     <Controller
-                      name="projectType"
+                      name="subject"
                       control={control}
                       rules={{
                         required: "Selecciona un tipo de proyecto.",
                       }}
                       render={({ field }) => (
                         <Select
-                          id="projectType"
+                          id="subject"
                           value={field.value}
                           onValueChange={field.onChange}
-                          options={projectTypeOptions}
+                          options={subjectOptions}
                           placeholder="Selecciona una opción"
-                          invalid={Boolean(errors.projectType)}
+                          invalid={Boolean(errors.subject)}
                         />
                       )}
                     />
-                    {errors.projectType ? (
+                    {errors.subject ? (
                       <p className="text-sm text-destructive">
-                        {errors.projectType.message}
+                        {errors.subject.message}
                       </p>
                     ) : null}
                   </div>
@@ -240,6 +260,15 @@ export function Contact() {
                     </p>
                   ) : null}
                 </div>
+
+                {submitError ? (
+                  <div
+                    className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                    role="alert"
+                  >
+                    {submitError}
+                  </div>
+                ) : null}
 
                 <Button
                   type="submit"
