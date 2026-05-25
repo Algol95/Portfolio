@@ -1,30 +1,103 @@
-# React + Vite
+# Mi Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio personal desarrollado como single-page application para presentar perfil profesional, experiencia, stack y proyectos destacados, con un formulario de contacto conectado a backend real y protegido con Google reCAPTCHA v3.
 
-Currently, two official plugins are available:
+## Resumen
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Este proyecto esta construido con React 19 y Vite 8, con una interfaz cuidada basada en Tailwind CSS v4 y componentes UI propios. El contenido principal se organiza en secciones de inicio, sobre mi, experiencia, proyectos, contacto y footer, con un enfoque claro en rendimiento, reutilizacion de componentes y experiencia visual.
 
-## React Compiler
+Incluye una capa de datos local en JSON para proyectos, experiencia y tecnologias, asi como integracion con una API externa para el envio del formulario de contacto.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades destacables
 
-## Expanding the ESLint configuration
+- Navegacion responsive con menu movil y cambio de tema.
+- Fondo decorativo con particulas y animaciones de aparicion al hacer scroll.
+- Seccion de experiencia y stack renderizada a partir de datos estructurados.
+- Galeria de proyectos con proyectos destacados, tarjetas secundarias y modal de detalle.
+- Formulario de contacto con validaciones de cliente, limites de caracteres y contador en el mensaje.
+- Integracion opcional con Google reCAPTCHA v3 para proteger el envio frente a spam.
+- Consumo de API mediante Axios para enviar mensajes al endpoint de contacto.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Stack principal
 
-# Portfolio
+### Frontend
 
-## reCAPTCHA v3
+- React 19
+- Vite 8
+- Tailwind CSS 4
+- React Hook Form
+- Axios
+- Lucide React
+- React Icons
 
-Para activar Google reCAPTCHA v3 en el formulario de contacto, crea un archivo `.env` a partir de `.env.example` y define:
+### BackEnd
 
-`VITE_RECAPTCHA_SITE_KEY=tu_site_key`
+- Java 17
+- Spring Boot
 
-La app ya queda preparada para:
+### Integraciones
 
-- cargar el proveedor global de reCAPTCHA
-- solicitar un token al enviar el formulario de contacto
-- adjuntar ese token al payload enviado al backend
+- Google reCAPTCHA v3
+
+### Datos y organizacion
+
+- JSON local para proyectos, experiencia y tecnologias
+- Hooks reutilizables para scroll reveal, reCAPTCHA y modal multimedia
+- Componentes UI propios dentro de src/components/ui
+
+## Arquitectura del proyecto
+
+```text
+src/
+	components/
+		ui/
+	data/
+	hooks/
+	lib/
+	App.jsx
+	main.jsx
+public/
+	images/
+	videos/
+	docs/
+```
+
+### Piezas clave
+
+- src/App.jsx monta la estructura principal del portfolio.
+- src/components/AppProviders.jsx registra el proveedor global de reCAPTCHA cuando existe la clave publica.
+- src/components/Projects.jsx renderiza los proyectos y abre el modal de detalle.
+- src/components/Contact.jsx gestiona validacion, UX del formulario y envio.
+- src/lib/api.js centraliza la llamada HTTP al backend de contacto.
+- src/data/projects.json, src/data/experience.json y src/data/technologies.json actuan como fuente de contenido y metadatos.
+
+## Formulario de contacto
+
+El formulario de contacto esta preparado para un flujo real de envio:
+
+- validacion de campos con React Hook Form
+- limite de caracteres en nombre, email, compania y mensaje
+- contador visual de caracteres en el campo mensaje
+- generacion de token reCAPTCHA v3 al enviar
+- adjunto del token al payload enviado al backend
+- control de errores de envio y feedback visual al usuario
+
+Cuando VITE_RECAPTCHA_SITE_KEY esta configurada, la aplicacion carga Google reCAPTCHA v3 de forma global y exige token antes de marcar el envio como correcto.
+
+## Objetivo del proyecto
+
+Este repositorio no busca ser una simple plantilla visual, sino una base de portfolio realista para un perfil Full Stack: presenta experiencia, casos de trabajo, stack tecnico y una via de contacto funcional con integracion backend y proteccion anti-bots.
+
+## Estado actual
+
+- frontend funcional con Vite, React y Tailwind
+- secciones principales del portfolio ya integradas
+- proyectos y experiencia renderizados desde datos locales
+- formulario de contacto conectado a API y preparado para reCAPTCHA v3
+
+## Autor
+
+Angel Aragon
+
+- GitHub: https://github.com/Algol95
+- LinkedIn: https://www.linkedin.com/in/angel-dev-aragon/
