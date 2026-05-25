@@ -10,7 +10,7 @@ import {
   MessageSquare,
   Hourglass,
 } from "lucide-react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { sendContactMessage } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -51,7 +51,6 @@ export function Contact() {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
@@ -63,7 +62,11 @@ export function Contact() {
     },
   });
 
-  const messageValue = watch("message");
+  const messageValue = useWatch({
+    control,
+    name: "message",
+    defaultValue: "",
+  });
   const messageLength = messageValue.length;
 
   useEffect(() => {
