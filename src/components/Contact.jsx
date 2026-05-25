@@ -8,6 +8,7 @@ import {
   User,
   Building2,
   MessageSquare,
+  Hourglass,
 } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { sendContactMessage } from "@/lib/api";
@@ -29,6 +30,13 @@ const subjectOptions = [
 const genericSubmitErrorMessage =
   "No se ha podido enviar el mensaje. Inténtalo de nuevo más tarde.";
 
+const FIELD_MAX_LENGTHS = {
+  name: 100,
+  email: 150,
+  company: 150,
+  message: 2000,
+};
+
 /**
  * Componente de contacto que permite a los usuarios enviar mensajes a través de un formulario. El componente maneja el estado del formulario, la validación de los campos y el envío de los datos. También muestra un mensaje de confirmación cuando el mensaje se envía correctamente. El formulario incluye campos para el nombre, correo electrónico, empresa, tipo de proyecto y mensaje, y utiliza componentes personalizados para mejorar la experiencia del usuario. Además, proporciona información de contacto adicional y enlaces a redes sociales.
  * @returns {JSX.Element} Componente de contacto.
@@ -43,6 +51,7 @@ export function Contact() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
@@ -53,6 +62,9 @@ export function Contact() {
       message: "",
     },
   });
+
+  const messageValue = watch("message");
+  const messageLength = messageValue.length;
 
   useEffect(() => {
     if (!submitted) {
@@ -140,10 +152,15 @@ export function Contact() {
                     <Input
                       id="name"
                       placeholder="Tu nombre"
+                      maxLength={FIELD_MAX_LENGTHS.name}
                       aria-invalid={errors.name ? "true" : "false"}
                       className="bg-background/50"
                       {...register("name", {
                         required: "El nombre es obligatorio.",
+                        maxLength: {
+                          value: FIELD_MAX_LENGTHS.name,
+                          message: `El nombre no puede superar los ${FIELD_MAX_LENGTHS.name} caracteres.`,
+                        },
                       })}
                     />
                     {errors.name ? (
@@ -164,10 +181,15 @@ export function Contact() {
                       id="email"
                       type="email"
                       placeholder="tu@email.com"
+                      maxLength={FIELD_MAX_LENGTHS.email}
                       aria-invalid={errors.email ? "true" : "false"}
                       className="bg-background/50"
                       {...register("email", {
                         required: "El email es obligatorio.",
+                        maxLength: {
+                          value: FIELD_MAX_LENGTHS.email,
+                          message: `El email no puede superar los ${FIELD_MAX_LENGTHS.email} caracteres.`,
+                        },
                         pattern: {
                           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                           message: "Introduce un email válido.",
@@ -195,9 +217,20 @@ export function Contact() {
                     <Input
                       id="company"
                       placeholder="Nombre de tu empresa"
+                      maxLength={FIELD_MAX_LENGTHS.company}
                       className="bg-background/50"
-                      {...register("company")}
+                      {...register("company", {
+                        maxLength: {
+                          value: FIELD_MAX_LENGTHS.company,
+                          message: `La compañía no puede superar los ${FIELD_MAX_LENGTHS.company} caracteres.`,
+                        },
+                      })}
                     />
+                    {errors.company ? (
+                      <p className="text-sm text-destructive">
+                        {errors.company.message}
+                      </p>
+                    ) : null}
                   </div>
                   <div className="space-y-2">
                     <label
@@ -244,6 +277,8 @@ export function Contact() {
                     id="message"
                     placeholder="Cuéntame sobre tu proyecto o lo que necesitas..."
                     rows={4}
+                    maxLength={FIELD_MAX_LENGTHS.message}
+                    aria-describedby="message-character-count"
                     aria-invalid={errors.message ? "true" : "false"}
                     className="bg-background/50 resize-none"
                     {...register("message", {
@@ -252,13 +287,27 @@ export function Contact() {
                         value: 10,
                         message: "Cuéntame un poco más sobre lo que necesitas.",
                       },
+                      maxLength: {
+                        value: FIELD_MAX_LENGTHS.message,
+                        message: `El mensaje no puede superar los ${FIELD_MAX_LENGTHS.message} caracteres.`,
+                      },
                     })}
                   />
-                  {errors.message ? (
-                    <p className="text-sm text-destructive">
-                      {errors.message.message}
+                  <div className="flex items-center justify-between gap-3 text-sm">
+                    {errors.message ? (
+                      <p className="text-destructive">
+                        {errors.message.message}
+                      </p>
+                    ) : (
+                      <span />
+                    )}
+                    <p
+                      id="message-character-count"
+                      className="text-muted-foreground"
+                    >
+                      {messageLength}/{FIELD_MAX_LENGTHS.message}
                     </p>
-                  ) : null}
+                  </div>
                 </div>
 
                 {submitError ? (
@@ -280,7 +329,9 @@ export function Contact() {
                 >
                   {isSubmitting ? (
                     <>
-                      <span className="animate-spin mr-2">⏳</span>
+                      <span className="animate-spin mr-2">
+                        <Hourglass className="h-5 w-5" />
+                      </span>
                       Enviando...
                     </>
                   ) : isRecaptchaEnabled && !isRecaptchaReady ? (
@@ -297,21 +348,6 @@ export function Contact() {
           </div>
 
           <div className="md:col-span-2 space-y-6">
-            <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6">
-              <h3 className="font-semibold mb-4">
-                También puedes escribirme a:
-              </h3>
-              <a
-                href="mailto:hello@example.com"
-                className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Mail className="h-5 w-5 text-primary" />
-                </div>
-                <span>hello@example.com</span>
-              </a>
-            </div>
-
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6">
               <h3 className="font-semibold mb-4">Sígueme en:</h3>
               <div className="space-y-3">
