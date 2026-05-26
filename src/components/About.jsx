@@ -53,7 +53,7 @@ export function About() {
                 Soy un desarrollador con experiencia en el desarrollo de API
                 REST y aplicaciones web modernas. Con capacidad para trabajar en
                 equipo y ayudar para lograr objetivos. Con ganas de aprender y
-                crecer profeisonalmente. No me dan miedo los retos, me gusta
+                crecer profesionalmente. No me dan miedo los retos, me gusta
                 aprender cosas nuevas y mejorar día a día para crecer
                 profesionalmente. Mi objetivo es seguir perfeccionando mis
                 habilidades y contribuir en proyectos importantes, que tengan un

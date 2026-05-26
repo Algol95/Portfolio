@@ -12,7 +12,7 @@ const API = axios.create({
 });
 
 export const sendContactForm = (formData) => {
-  return API.post("/api/contacto", {
+  return API.post("/contacto", {
     name: formData.name,
     email: formData.email,
     company: formData.company,
